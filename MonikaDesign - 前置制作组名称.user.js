@@ -10,7 +10,6 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=monikadesign.uk
 // @grant        none
 // @run-at       document-end
-// @require      https://cdn.bootcss.com/jquery/3.7.1/jquery.min.js
 // ==/UserScript==
 
 (function () {
@@ -22,15 +21,15 @@
   function updateTorrentListingNameHelper() {
     let flag = false;
     console.log('updateTorrentListingNameHelper');
-    $('.torrent-listings-name').each(function () {
-      const text = this.innerText;
+    document.querySelectorAll('.torrent-listings-name').forEach((each) => {
+      const text = each.innerText;
       if (text[0] !== '[') {
         flag = true;
         for (const separator of separators) {
           let splitTexts = text.split(separator);
           if (splitTexts.length > 1) {
-            this.innerText = `[${splitTexts[splitTexts.length - 1]}] ${
-              this.innerText
+            each.innerText = `[${splitTexts[splitTexts.length - 1]}] ${
+              each.innerText
             }`;
             return;
           }
@@ -55,8 +54,8 @@
         falseResult += 1;
       }
       if ((trueResult && falseResult) || trueResult + falseResult > 50) {
-        $('.pagination a').click(function () {
-          updateTorrentListingName();
+        document.querySelectorAll('.pagination a').forEach((each) => {
+          each.addEventListener('click', updateTorrentListingName);
         });
         clearInterval(interval);
       }
@@ -65,17 +64,21 @@
 
   updateTorrentListingName();
 
-  $('.pagination a').click(function () {
-    updateTorrentListingName();
+  document.querySelectorAll('.pagination a').forEach((each) => {
+    each.addEventListener('click', updateTorrentListingName);
   });
 
-  $('#torrent-advanced-search input[type=checkbox]').click(function () {
-    updateTorrentListingName();
-  });
+  document
+    .querySelectorAll('#torrent-advanced-search input[type=checkbox]')
+    .forEach((each) => {
+      each.addEventListener('click', updateTorrentListingName);
+    });
 
-  $(
-    '#torrent-advanced-search input[type=text], #torrent-list-search input[type=search]'
-  ).keyup(function () {
-    updateTorrentListingName();
-  });
+  document
+    .querySelectorAll(
+      '#torrent-advanced-search input[type=text], #torrent-list-search input[type=search]'
+    )
+    .forEach((each) => {
+      each.addEventListener('keyup', updateTorrentListingName);
+    });
 })();
