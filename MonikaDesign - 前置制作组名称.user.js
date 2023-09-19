@@ -16,7 +16,7 @@
   'use strict';
 
   /** 组名和前面名称部分的分割符 */
-  const separators = ['0-', '1-', '2.0 ', '2.1 ', '5.1', '7.1', 'Atmos-'];
+  const separators = ['0-', '1-', '2.0 ', '2.1 ', '5.1 ', '7.1 ', 'Atmos-'];
 
   function updateTorrentListingNameHelper() {
     let flag = false;
