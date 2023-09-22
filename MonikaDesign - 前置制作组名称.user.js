@@ -49,7 +49,9 @@
     interval = setInterval(function () {
       const result = updateTorrentListingNameHelper();
       if (result) {
-        trueResult += 1;
+        if (falseResult) {
+          trueResult += 1;
+        }
       } else {
         falseResult += 1;
       }
