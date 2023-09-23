@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MonikaDesign - 前置制作组名称
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.1.1
 // @description  MonikaDesign - 前置制作组名称
 // @author       Alneys
 // @match        https://monikadesign.uk/torrents?*
@@ -56,7 +56,7 @@
         falseResult += 1;
       }
       if ((trueResult && falseResult) || trueResult + falseResult > 50) {
-        document.querySelectorAll('.pagination a').forEach((each) => {
+        document.querySelectorAll('.pagination a, fas').forEach((each) => {
           each.addEventListener('click', updateTorrentListingName);
         });
         clearInterval(interval);
@@ -66,7 +66,7 @@
 
   updateTorrentListingName();
 
-  document.querySelectorAll('.pagination a').forEach((each) => {
+  document.querySelectorAll('.pagination a, fas').forEach((each) => {
     each.addEventListener('click', updateTorrentListingName);
   });
 
