@@ -28,7 +28,7 @@
         for (const separator of separators) {
           let splitTexts = text.split(separator);
           if (splitTexts.length > 1) {
-            each.innerText = `[${splitTexts[splitTexts.length - 1]}] ${
+            each.innerText = `[${splitTexts[splitTexts.length - 1].trim()}] ${
               each.innerText
             }`;
             return;
