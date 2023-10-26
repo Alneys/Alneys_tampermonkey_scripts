@@ -24,7 +24,7 @@
       .querySelectorAll('.torrent-listings-name:not([group-name-moved])')
       .forEach((each) => {
         const text = each.innerText;
-        console.log('new', each.innerText);
+        // console.log('new', each.innerText);
         if (text[0] !== '[') {
           flag = true;
           for (const separator of separators) {
