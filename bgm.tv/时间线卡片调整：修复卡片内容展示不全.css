@@ -1,0 +1,21 @@
+/* 时间线卡片调整：修复卡片内容展示不全的问题 */
+
+/* .card_tiny 高度 */
+#timeline ul li.tml_item .card.card_tiny .container,
+#timeline ul li.tml_item .card.card_tiny:hover .container {
+  max-height: none !important;
+  height: auto !important;
+}
+
+#timeline ul li.tml_item .card.card_tiny .container:hover {
+  padding-bottom: 5px;
+}
+
+/* .info 高度 */
+#timeline ul li.tml_item .card .inner .info {
+  height: auto;
+}
+#timeline ul li.tml_item .card.card_tiny .container:hover .info {
+  max-height: none !important;
+  height: auto !important;
+}

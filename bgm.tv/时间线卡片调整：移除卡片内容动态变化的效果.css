@@ -1,0 +1,38 @@
+/* 移除卡片内容动态变化的效果 */
+
+/* 统一卡片文字的行高 */
+#timeline ul li.tml_item .card .inner .title,
+#timeline ul li.tml_item .card .inner .info,
+#timeline ul li.tml_item .card .inner .rateInfo {
+  height: auto;
+  line-height: 1.5;
+}
+/* .card_tiny 卡片高度与边距 */
+#timeline ul li.tml_item .card.card_tiny,
+#timeline ul li.tml_item .card.card_tiny:hover {
+  max-height: none !important;
+}
+#timeline ul li.tml_item .card.card_tiny .container,
+#timeline ul li.tml_item .card.card_tiny:hover .container {
+  max-height: none !important;
+  padding: 5px !important;
+  position: static !important;
+}
+/* .card_tiny 图片大小 */
+#timeline ul li.tml_item .card.card_tiny .cover,
+#timeline ul li.tml_item .card.card_tiny:hover .cover {
+  width: 40px !important;
+  max-height: 40px !important;
+}
+/* .card_tiny 内容边距 */
+#timeline ul li.tml_item .card.card_tiny .inner,
+#timeline ul li.tml_item .card.card_tiny:hover .inner {
+  padding: 2px 5px !important;
+  margin-left: 45px !important;
+}
+/* .card_tiny 详情不显示 */
+#timeline ul li.tml_item .card.card_tiny .info,
+#timeline ul li.tml_item .card.card_tiny:hover .info {
+  display: none !important;
+  max-height: none !important;
+}

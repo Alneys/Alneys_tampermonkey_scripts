@@ -1,0 +1,13 @@
+/* 时间线卡片调整：同时显示原名和译名 */
+
+#timeline ul li.tml_item .card .inner .title small.grey {
+  display: block;
+}
+#timeline ul li.tml_item .card.card_tiny {
+  min-height: 51px;
+  max-height: 51px;
+}
+#timeline ul li.tml_item .card.card_tiny .container {
+  min-height: 52px;
+  max-height: 52px;
+}
