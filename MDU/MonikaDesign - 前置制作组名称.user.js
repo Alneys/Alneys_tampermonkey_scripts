@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MonikaDesign - 前置制作组名称
 // @namespace    http://tampermonkey.net/
-// @version      0.1.1
+// @version      0.2.0
 // @description  MonikaDesign - 前置制作组名称
 // @author       Alneys
 // @match        https://monikadesign.uk/torrents?*
@@ -20,67 +20,34 @@
 
   function updateTorrentListingNameHelper() {
     let flag = false;
-    console.log('updateTorrentListingNameHelper');
-    document.querySelectorAll('.torrent-listings-name').forEach((each) => {
-      const text = each.innerText;
-      if (text[0] !== '[') {
-        flag = true;
-        for (const separator of separators) {
-          let splitTexts = text.split(separator);
-          if (splitTexts.length > 1) {
-            each.innerText = `[${splitTexts[splitTexts.length - 1].trim()}] ${
-              each.innerText
-            }`;
-            return;
+    document
+      .querySelectorAll('.torrent-listings-name:not([group-name-moved])')
+      .forEach((each) => {
+        const text = each.innerText;
+        console.log('new', each.innerText);
+        if (text[0] !== '[') {
+          flag = true;
+          for (const separator of separators) {
+            const splitTexts = text.split(separator);
+            if (splitTexts.length > 1) {
+              each.innerText = `[${splitTexts[splitTexts.length - 1].trim()}] ${
+                each.innerText
+              }`;
+              each.setAttribute('group-name-moved', true);
+              return;
+            }
           }
         }
-      }
-    });
+      });
     return flag;
   }
 
-  let interval = undefined;
-  const updateDelay = 200;
-
-  function updateTorrentListingName() {
-    clearInterval(interval);
-    let trueResult = 0;
-    let falseResult = 0;
-    interval = setInterval(function () {
-      const result = updateTorrentListingNameHelper();
-      if (result) {
-        if (falseResult) {
-          trueResult += 1;
-        }
-      } else {
-        falseResult += 1;
-      }
-      if ((trueResult && falseResult) || trueResult + falseResult > 50) {
-        document.querySelectorAll('.pagination a, fas').forEach((each) => {
-          each.addEventListener('click', updateTorrentListingName);
-        });
-        clearInterval(interval);
-      }
-    }, updateDelay);
-  }
-
-  updateTorrentListingName();
-
-  document.querySelectorAll('.pagination a, fas').forEach((each) => {
-    each.addEventListener('click', updateTorrentListingName);
+  // 首次运行
+  updateTorrentListingNameHelper();
+  // 创建一个观察器实例
+  const observer = new MutationObserver(function (mutations) {
+    updateTorrentListingNameHelper();
   });
-
-  document
-    .querySelectorAll('#torrent-advanced-search input[type=checkbox]')
-    .forEach((each) => {
-      each.addEventListener('click', updateTorrentListingName);
-    });
-
-  document
-    .querySelectorAll(
-      '#torrent-advanced-search input[type=text], #torrent-list-search input[type=search]'
-    )
-    .forEach((each) => {
-      each.addEventListener('keyup', updateTorrentListingName);
-    });
+  // 配置观察器：观察整个文档和子树的变化
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
