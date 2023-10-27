@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MonikaDesign - 前置制作组名称
 // @namespace    http://tampermonkey.net/
-// @version      0.3.0
+// @version      0.3.1
 // @description  MonikaDesign - 前置制作组名称
 // @author       Alneys
 // @match        https://monikadesign.uk
@@ -40,7 +40,7 @@
         for (const separator of separators) {
           const splitTexts = text.split(separator);
           if (splitTexts.length > 1) {
-            each.innerText = `[${splitTexts[
+            each.textContent = `[${splitTexts[
               splitTexts.length - 1
             ].trim()}] ${text}`;
             each.setAttribute('group-name-moved', 'true');
