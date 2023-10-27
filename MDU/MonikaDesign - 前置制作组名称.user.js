@@ -23,16 +23,15 @@
     document
       .querySelectorAll('.torrent-listings-name:not([group-name-moved])')
       .forEach((each) => {
-        const text = each.innerText;
-        // console.log('new', each.innerText);
+        const text = each.textContent;
         if (text[0] !== '[') {
           flag = true;
           for (const separator of separators) {
             const splitTexts = text.split(separator);
             if (splitTexts.length > 1) {
-              each.innerText = `[${splitTexts[splitTexts.length - 1].trim()}] ${
-                each.innerText
-              }`;
+              each.innerText = `[${splitTexts[
+                splitTexts.length - 1
+              ].trim()}] ${text}`;
               each.setAttribute('group-name-moved', true);
               return;
             }
