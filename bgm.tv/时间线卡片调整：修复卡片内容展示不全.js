@@ -25,11 +25,14 @@
       }
     });
   }
+  // 首次运行
+  func();
   // 延迟2秒首次运行，试图解决片假名终结者的冲突
   setTimeout(func, 2000);
   // 创建一个观察器实例
   const observer = new MutationObserver(function (mutations) {
     func();
+    setTimeout(func, 2000);
   });
   // 配置观察器：观察整个文档和子树的变化
   observer.observe(document.body, { childList: true, subtree: true });
